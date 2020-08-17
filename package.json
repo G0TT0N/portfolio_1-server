@@ -1,0 +1,31 @@
+{
+  "name": "portfolio_1-server",
+  "version": "0.0.1",
+  "description": "server for pet-project portfolio-1",
+  "main": "index.ts",
+  "scripts": {
+    "start": "node index.ts",
+    "dev": "nodemon index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/G0TT0N/portfolio_1-server.git"
+  },
+  "author": "G0tt0N",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/G0TT0N/portfolio_1-server/issues"
+  },
+  "homepage": "https://github.com/G0TT0N/portfolio_1-server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.27",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  }
+}

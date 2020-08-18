@@ -1,11 +1,11 @@
-export {};
-const User = require("../../models/User");
+const {Router} = require("express");
+const User = require("../../models/User.ts");
 const bcrypt = require("bcryptjs");
-const express = require("express");
-const router = express.Router();
 
-// /authApi
-router.post("/register", async (req: any, res: any) => {
+const router = Router();
+
+// /auth
+router.post("/register", async (req, res) => {
   try {
     const {email, password} = req.body;
 

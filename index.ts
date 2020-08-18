@@ -6,7 +6,22 @@ const app = express();
 const port = process.env.PORT || 4050;
 const cors = require("cors");
 
-app.use(cors());
+const whitelist = [
+  "http://localhost:4200",
+  "https://g0tt0n.github.io/portfolio_1",
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({extended: true}));
 
 app.use("/auth", require("./routes/auth/auth-routes"));

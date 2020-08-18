@@ -20,7 +20,22 @@ const cors = require("cors");
 // };
 
 // app.use(cors(corsOptions));
-app.use("*", cors());
+app.use(
+  "*",
+  cors({
+    origin: ["http://localhost:4200", "https://g0tt0n.github.io"],
+    preflightContinue: true,
+    optionsSuccessStatus: 200,
+  }),
+);
+app.options(
+  "*",
+  cors({
+    origin: ["http://localhost:4200", "https://g0tt0n.github.io"],
+    preflightContinue: true,
+    optionsSuccessStatus: 200,
+  }),
+);
 app.use(express.json({extended: true}));
 
 app.use("/auth", require("./routes/auth/auth-routes"));

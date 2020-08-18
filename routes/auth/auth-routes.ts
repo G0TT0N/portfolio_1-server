@@ -1,8 +1,8 @@
-const {Router} = require("express");
+export {};
 const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
-
-const router = Router();
+const express = require("express");
+const router = express.Router();
 
 // /authApi
 router.post("/register", async (req: any, res: any) => {

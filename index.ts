@@ -16,12 +16,17 @@ app.use("/auth", authRoutes);
 
 async function start() {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    });
+    await mongoose.connect(
+      process.env.NODE_ENV === "dev"
+        ? process.env.MONGO_URI_DEV
+        : process.env.MONGO_URI_PROD,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+      },
+    );
     app.listen(port, () => console.log(`STARTED ${port}`));
   } catch (e) {
     console.log("server error", e.message);

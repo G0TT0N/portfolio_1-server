@@ -52,7 +52,9 @@ function start() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, mongoose.connect(process.env.MONGO_URI, {
+                    return [4 /*yield*/, mongoose.connect(process.env.NODE_ENV === "dev"
+                            ? process.env.MONGO_URI_DEV
+                            : process.env.MONGO_URI_PROD, {
                             useNewUrlParser: true,
                             useUnifiedTopology: true,
                             useCreateIndex: true,

@@ -1,11 +1,12 @@
+export {};
 const {Router} = require("express");
 const User = require("../../models/User.ts");
 const bcrypt = require("bcryptjs");
 
 const router = Router();
 
-// /auth
-router.post("/register", async (req, res) => {
+// /user
+router.post("/create", async (req, res) => {
   try {
     const {email, password} = req.body;
 
@@ -20,14 +21,13 @@ router.post("/register", async (req, res) => {
     const user = new User({
       email,
       password: hashedPassword,
-      created: new Date(),
     });
 
     await user.save();
 
     res.status(201).json({success: true});
   } catch (e) {
-    res.status(500).json({message: "new error", e});
+    res.status(500).json(e);
   }
 });
 

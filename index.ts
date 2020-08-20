@@ -2,17 +2,20 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-
-const authRoutes = require("./routes/auth/auth-routes.ts");
+const bodyParser = require("body-parser");
 
 const port = process.env.PORT || 4050;
 const cors = require("cors");
+false;
 
 app.use("*", cors());
 app.options("*", cors());
 app.use(express.json({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
-app.use("/auth", authRoutes);
+app.use("/user", require("./routes/user/userRoutes.ts"));
+app.use("/town", require("./routes/town/townRoutes.ts"));
 
 async function start() {
   try {

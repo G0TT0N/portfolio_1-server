@@ -14,8 +14,8 @@ app.use(express.json({extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use("/user", require("./routes/user/userRoutes.ts"));
-app.use("/town", require("./routes/town/townRoutes.ts"));
+app.use("/userApi", require("./routes/user/userRoutes.ts"));
+app.use("/townApi", require("./routes/town/townRoutes.ts"));
 
 async function start() {
   try {

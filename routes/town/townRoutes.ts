@@ -4,8 +4,8 @@ const Town = require("../../models/Town.ts");
 
 const router = Router();
 
-// /town
-router.get("/", async (req, res) => {
+// /townApi
+router.get("/getTownList", async (req, res) => {
   try {
     const townList = await Town.find();
     res.status(200).json(townList);

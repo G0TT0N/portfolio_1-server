@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 
 const router = Router();
 
-// /user
+// /userApi
 router.post("/create", async (req, res) => {
   try {
     const {email, password} = req.body;

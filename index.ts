@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 
 const port = process.env.PORT || 4050;
 const cors = require("cors");
-false;
 
 app.use("*", cors());
 app.options("*", cors());
@@ -14,8 +13,9 @@ app.use(express.json({extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use("/userApi", require("./routes/user/userRoutes.ts"));
+app.use("/authApi", require("./routes/auth/authRoutes.ts"));
 app.use("/townApi", require("./routes/town/townRoutes.ts"));
+app.use("/userApi", require("./routes/user/userRoutes.ts"));
 
 async function start() {
   try {

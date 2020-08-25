@@ -1,7 +1,11 @@
-export {};
-const {Schema, model} = require("mongoose");
+import mongoose from "mongoose";
 
-const schema = new Schema({
+interface ITown extends mongoose.Document {
+  name: string;
+  created: string;
+}
+
+const schema = new mongoose.Schema({
   name: {type: String, required: true, unique: true},
   created: {
     type: String,
@@ -9,4 +13,4 @@ const schema = new Schema({
   },
 });
 
-module.exports = model("Town", schema);
+export default mongoose.model<ITown>("Town", schema);

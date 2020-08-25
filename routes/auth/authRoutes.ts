@@ -1,8 +1,7 @@
-export {};
-const {Router} = require("express");
-const User = require("../../models/User.ts");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+import {Router} from "express";
+import User from "../../models/User";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const router = Router();
 
@@ -23,7 +22,7 @@ router.post("/login", async (req, res, next) => {
       return res.status(400).json("wrong password or email");
     }
 
-    const token = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {
+    const token = jwt.sign({userId: user.id}, process.env.JWT_SECRET + "", {
       expiresIn: "1h",
     });
 
@@ -36,7 +35,7 @@ router.post("/login", async (req, res, next) => {
 router.post("/checkToken", (req, res) => {
   const {prevToken} = req.body;
 
-  jwt.verify(prevToken, process.env.JWT_SECRET, (err, decoded) => {
+  jwt.verify(prevToken, process.env.JWT_SECRET + "", (err, decoded) => {
     console.log(decoded);
     res.json(decoded);
   });

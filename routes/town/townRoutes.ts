@@ -1,6 +1,5 @@
-export {};
-const {Router} = require("express");
-const Town = require("../../models/Town.ts");
+import {Router} from "express";
+import Town from "../../models/Town";
 
 const router = Router();
 

@@ -1,14 +1,13 @@
-export {};
-const {Router} = require("express");
-const User = require("../../models/User.ts");
-const bcrypt = require("bcryptjs");
+import {Router} from "express";
+import User from "../../models/User";
+import bcrypt from "bcryptjs";
 
 const router = Router();
 
 // /userApi
-router.post("/create", async (req, res) => {
+router.post("/createUser", async (req, res) => {
   try {
-    const {email, password} = req.body;
+    const {email, password, name, phone} = req.body;
 
     const candidate = await User.findOne({email});
 
@@ -21,6 +20,8 @@ router.post("/create", async (req, res) => {
     const user = new User({
       email,
       password: hashedPassword,
+      name,
+      phone,
     });
 
     await user.save();

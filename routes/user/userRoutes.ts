@@ -12,7 +12,7 @@ router.post("/createUser", async (req, res) => {
     const candidate = await User.findOne({email});
 
     if (candidate) {
-      return res.status(400).json({message: "user already exist"});
+      return res.status(400).json("user already exist");
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -26,7 +26,7 @@ router.post("/createUser", async (req, res) => {
 
     await user.save();
 
-    res.status(201).json({success: true});
+    res.status(201).json(user._id);
   } catch (e) {
     res.status(500).json(e);
   }

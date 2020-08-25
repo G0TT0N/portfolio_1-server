@@ -13,7 +13,7 @@ router.post("/login", async (req, res, next) => {
     const user = await User.findOne({email});
 
     if (!user) {
-      return res.status(400).send("user not found");
+      return res.status(400).json("user not found");
     }
 
     const isMatchPass = await bcrypt.compare(password, user.password);
@@ -36,8 +36,11 @@ router.post("/checkToken", (req, res) => {
   const {prevToken} = req.body;
 
   jwt.verify(prevToken, process.env.JWT_SECRET + "", (err, decoded) => {
-    console.log(decoded);
-    res.json(decoded);
+    if (err) {
+      res.json(false);
+    } else {
+      res.json({userId: decoded.userId});
+    }
   });
 });
 
